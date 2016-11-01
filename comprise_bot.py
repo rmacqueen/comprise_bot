@@ -49,8 +49,6 @@ for comment in subreddit_comments:
         print "Replying to " + str(comment.id)
         handle_ratelimit(comment.reply, response)
         comments_replied_to.append(comment.id)
-
-# Write our updated list back to the file
-with open("comments_replied_to.txt", "w") as f:
-    for comment_id in comments_replied_to:
-        f.write(comment_id + "\n")
+        # Write our updated list back to the file
+        with open("comments_replied_to.txt", "a") as f:
+            f.write(comment.id + '\n')
