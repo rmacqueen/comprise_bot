@@ -34,6 +34,9 @@ def handle_ratelimit(func, *args, **kwargs):
         except praw.errors.RateLimitExceeded as error:
             print '\tSleeping for %d seconds' % error.sleep_time
             time.sleep(error.sleep_time)
+        except praw.errors.InvalidComment:
+            print 'Encountered invalid comment. Skipping....'
+            return
 
 def login():
     r = praw.Reddit(config_bot.APP_UA)
