@@ -46,7 +46,7 @@ def login():
 
 r = login()
 
-subreddit_comments = praw.helpers.comment_stream(r, 'all', limit=None)
+subreddit_comments = praw.helpers.comment_stream(r, config_bot.SUBREDDITS, limit=None)
 for comment in subreddit_comments:
     if comment.body and comment.author.name != config_bot.REDDIT_USERNAME and comment.id not in comments_replied_to and comprise_matcher.search(comment.body):
         print "Replying to " + str(comment.id)
